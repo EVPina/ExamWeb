@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExamWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="ID_Exam" />
+          </Key>
+          <Property Name="ID_Exam" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_QandA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Code_User" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name_Exam" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exam_UserFollow">
+          <Key>
+            <PropertyRef Name="ID_ExamUser" />
+          </Key>
+          <Property Name="ID_ExamUser" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_Exam" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Estado_ExamUser" Type="varchar" MaxLength="10" />
+          <Property Name="Code_User" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Follower">
+          <Key>
+            <PropertyRef Name="Code_Follower" />
+          </Key>
+          <Property Name="Code_Follower" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Code_UserMain" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Code_UserFollow" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question_Answer">
+          <Key>
+            <PropertyRef Name="ID_QandA" />
+          </Key>
+          <Property Name="ID_QandA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Question_QandA" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Answer_QandA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Puntaje_QandA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ID_Result" />
+          </Key>
+          <Property Name="ID_Result" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_ExamUser" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Date_Result" Type="nchar" MaxLength="10" />
+          <Property Name="Score_Result" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Code_User" />
+          </Key>
+          <Property Name="Code_User" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Pass_User" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name_User" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Image_User" Type="varchar(max)" Nullable="false" />
+          <Property Name="Followers_User" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Exam_Question_Answer">
+          <End Role="Question_Answer" Type="Self.Question_Answer" Multiplicity="1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_Answer">
+              <PropertyRef Name="ID_QandA" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="ID_QandA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_UserFollow_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
+          <End Role="Exam_UserFollow" Type="Self.Exam_UserFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="ID_Exam" />
+            </Principal>
+            <Dependent Role="Exam_UserFollow">
+              <PropertyRef Name="ID_Exam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_UserFollow_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Exam_UserFollow" Type="Self.Exam_UserFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Code_User" />
+            </Principal>
+            <Dependent Role="Exam_UserFollow">
+              <PropertyRef Name="Code_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Follower_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Follower" Type="Self.Follower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Code_User" />
+            </Principal>
+            <Dependent Role="Follower">
+              <PropertyRef Name="Code_UserMain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Follower_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Follower" Type="Self.Follower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Code_User" />
+            </Principal>
+            <Dependent Role="Follower">
+              <PropertyRef Name="Code_UserFollow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Exam_UserFollow">
+          <End Role="Exam_UserFollow" Type="Self.Exam_UserFollow" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam_UserFollow">
+              <PropertyRef Name="ID_ExamUser" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="ID_ExamUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamWebModelStoreContainer">
+          <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam_UserFollow" EntityType="Self.Exam_UserFollow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Follower" EntityType="Self.Follower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_Answer" EntityType="Self.Question_Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Exam_Question_Answer" Association="Self.FK_Exam_Question_Answer">
+            <End Role="Question_Answer" EntitySet="Question_Answer" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_UserFollow_Exam" Association="Self.FK_Exam_UserFollow_Exam">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="Exam_UserFollow" EntitySet="Exam_UserFollow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_UserFollow_User" Association="Self.FK_Exam_UserFollow_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Exam_UserFollow" EntitySet="Exam_UserFollow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Follower_User" Association="Self.FK_Follower_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Follower" EntitySet="Follower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Follower_User1" Association="Self.FK_Follower_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Follower" EntitySet="Follower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Exam_UserFollow" Association="Self.FK_Result_Exam_UserFollow">
+            <End Role="Exam_UserFollow" EntitySet="Exam_UserFollow" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExamWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="ID_Exam" />
+          </Key>
+          <Property Name="ID_Exam" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_QandA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_User" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name_Exam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Exam_Question_Answer" FromRole="Exam" ToRole="Question_Answer" />
+          <NavigationProperty Name="Exam_UserFollow" Relationship="Self.FK_Exam_UserFollow_Exam" FromRole="Exam" ToRole="Exam_UserFollow" />
+        </EntityType>
+        <EntityType Name="Exam_UserFollow">
+          <Key>
+            <PropertyRef Name="ID_ExamUser" />
+          </Key>
+          <Property Name="ID_ExamUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Exam" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado_ExamUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Code_User" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_UserFollow_Exam" FromRole="Exam_UserFollow" ToRole="Exam" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Exam_UserFollow_User" FromRole="Exam_UserFollow" ToRole="User" />
+          <NavigationProperty Name="Result" Relationship="Self.FK_Result_Exam_UserFollow" FromRole="Exam_UserFollow" ToRole="Result" />
+        </EntityType>
+        <EntityType Name="Follower">
+          <Key>
+            <PropertyRef Name="Code_Follower" />
+          </Key>
+          <Property Name="Code_Follower" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_UserMain" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_UserFollow" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Follower_User" FromRole="Follower" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Follower_User1" FromRole="Follower" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Question_Answer">
+          <Key>
+            <PropertyRef Name="ID_QandA" />
+          </Key>
+          <Property Name="ID_QandA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Question_QandA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Answer_QandA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Puntaje_QandA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_Question_Answer" FromRole="Question_Answer" ToRole="Exam" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ID_Result" />
+          </Key>
+          <Property Name="ID_Result" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID_ExamUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Result" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Score_Result" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exam_UserFollow" Relationship="Self.FK_Result_Exam_UserFollow" FromRole="Result" ToRole="Exam_UserFollow" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Code_User" />
+          </Key>
+          <Property Name="Code_User" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass_User" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name_User" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image_User" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Followers_User" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exam_UserFollow" Relationship="Self.FK_Exam_UserFollow_User" FromRole="User" ToRole="Exam_UserFollow" />
+          <NavigationProperty Name="Follower" Relationship="Self.FK_Follower_User" FromRole="User" ToRole="Follower" />
+          <NavigationProperty Name="Follower1" Relationship="Self.FK_Follower_User1" FromRole="User" ToRole="Follower" />
+        </EntityType>
+        <Association Name="FK_Exam_Question_Answer">
+          <End Role="Question_Answer" Type="Self.Question_Answer" Multiplicity="1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_Answer">
+              <PropertyRef Name="ID_QandA" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="ID_QandA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_UserFollow_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
+          <End Role="Exam_UserFollow" Type="Self.Exam_UserFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="ID_Exam" />
+            </Principal>
+            <Dependent Role="Exam_UserFollow">
+              <PropertyRef Name="ID_Exam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_UserFollow_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Exam_UserFollow" Type="Self.Exam_UserFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Code_User" />
+            </Principal>
+            <Dependent Role="Exam_UserFollow">
+              <PropertyRef Name="Code_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Exam_UserFollow">
+          <End Role="Exam_UserFollow" Type="Self.Exam_UserFollow" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam_UserFollow">
+              <PropertyRef Name="ID_ExamUser" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="ID_ExamUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Follower_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Follower" Type="Self.Follower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Code_User" />
+            </Principal>
+            <Dependent Role="Follower">
+              <PropertyRef Name="Code_UserMain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Follower_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Follower" Type="Self.Follower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Code_User" />
+            </Principal>
+            <Dependent Role="Follower">
+              <PropertyRef Name="Code_UserFollow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Exam" EntityType="Self.Exam" />
+          <EntitySet Name="Exam_UserFollow" EntityType="Self.Exam_UserFollow" />
+          <EntitySet Name="Follower" EntityType="Self.Follower" />
+          <EntitySet Name="Question_Answer" EntityType="Self.Question_Answer" />
+          <EntitySet Name="Result" EntityType="Self.Result" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Exam_Question_Answer" Association="Self.FK_Exam_Question_Answer">
+            <End Role="Question_Answer" EntitySet="Question_Answer" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_UserFollow_Exam" Association="Self.FK_Exam_UserFollow_Exam">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="Exam_UserFollow" EntitySet="Exam_UserFollow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_UserFollow_User" Association="Self.FK_Exam_UserFollow_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Exam_UserFollow" EntitySet="Exam_UserFollow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Exam_UserFollow" Association="Self.FK_Result_Exam_UserFollow">
+            <End Role="Exam_UserFollow" EntitySet="Exam_UserFollow" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Follower_User" Association="Self.FK_Follower_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Follower" EntitySet="Follower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Follower_User1" Association="Self.FK_Follower_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Follower" EntitySet="Follower" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExamWebModelStoreContainer" CdmEntityContainer="ExamWebEntities">
+          <EntitySetMapping Name="Exam">
+            <EntityTypeMapping TypeName="ExamWebModel.Exam">
+              <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="ID_Exam" ColumnName="ID_Exam" />
+                <ScalarProperty Name="ID_QandA" ColumnName="ID_QandA" />
+                <ScalarProperty Name="Code_User" ColumnName="Code_User" />
+                <ScalarProperty Name="Name_Exam" ColumnName="Name_Exam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exam_UserFollow">
+            <EntityTypeMapping TypeName="ExamWebModel.Exam_UserFollow">
+              <MappingFragment StoreEntitySet="Exam_UserFollow">
+                <ScalarProperty Name="ID_ExamUser" ColumnName="ID_ExamUser" />
+                <ScalarProperty Name="ID_Exam" ColumnName="ID_Exam" />
+                <ScalarProperty Name="Estado_ExamUser" ColumnName="Estado_ExamUser" />
+                <ScalarProperty Name="Code_User" ColumnName="Code_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Follower">
+            <EntityTypeMapping TypeName="ExamWebModel.Follower">
+              <MappingFragment StoreEntitySet="Follower">
+                <ScalarProperty Name="Code_Follower" ColumnName="Code_Follower" />
+                <ScalarProperty Name="Code_UserMain" ColumnName="Code_UserMain" />
+                <ScalarProperty Name="Code_UserFollow" ColumnName="Code_UserFollow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_Answer">
+            <EntityTypeMapping TypeName="ExamWebModel.Question_Answer">
+              <MappingFragment StoreEntitySet="Question_Answer">
+                <ScalarProperty Name="ID_QandA" ColumnName="ID_QandA" />
+                <ScalarProperty Name="Question_QandA" ColumnName="Question_QandA" />
+                <ScalarProperty Name="Answer_QandA" ColumnName="Answer_QandA" />
+                <ScalarProperty Name="Puntaje_QandA" ColumnName="Puntaje_QandA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Result">
+            <EntityTypeMapping TypeName="ExamWebModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="ID_Result" ColumnName="ID_Result" />
+                <ScalarProperty Name="ID_ExamUser" ColumnName="ID_ExamUser" />
+                <ScalarProperty Name="Date_Result" ColumnName="Date_Result" />
+                <ScalarProperty Name="Score_Result" ColumnName="Score_Result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ExamWebModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ExamWebModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Code_User" ColumnName="Code_User" />
+                <ScalarProperty Name="Pass_User" ColumnName="Pass_User" />
+                <ScalarProperty Name="Name_User" ColumnName="Name_User" />
+                <ScalarProperty Name="Image_User" ColumnName="Image_User" />
+                <ScalarProperty Name="Followers_User" ColumnName="Followers_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
