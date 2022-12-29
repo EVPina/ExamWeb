@@ -1,0 +1,30 @@
+﻿
+<div class="col-md-4">
+    <div class="list-group" id="options">
+        <input type="button" onclick='ClickOpcion(0)' class="list-group-item list-group-item-action" aria-current="true" value="Personal Data" />
+        <input type="button" onclick='ClickOpcion(1)' class="list-group-item list-group-item-action" value="Cuenta del Usuario" />
+        <input type="button" onclick='ClickOpcion(2)' class="list-group-item list-group-item-action" value="Cambiar contraseña" />
+    </div>
+</div>
+<script type="text/javascript">
+    const options = document.getElementById("options");
+    const totalitems = options.children.length
+    function ClickOpcion(opcion) {
+        const url = "@Url.Action("OptionsProfile", "User")";
+        let data = { ValueOpcion : opcion }
+        $.post(url, data)
+            .done(function (data) {
+                window.location.href = data.opcion;
+            })
+            .fail(function (err) {
+            console.log(err.responseText)
+        })   
+    }
+
+    for (let i = 0; i < totalitems; i++) {
+        const actualoption = options.children[i]
+        if (@Model === i) {
+            actualoption.classList.add("active")
+        }
+    }
+</script>
