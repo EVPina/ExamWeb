@@ -3,38 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Normalize.css"/>
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <header class="navbar">
+        <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 190" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(165, 90, 242, 1)" offset="0%"></stop><stop stop-color="rgba(165, 90, 242, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,57L30,47.5C60,38,120,19,180,28.5C240,38,300,76,360,82.3C420,89,480,63,540,57C600,51,660,63,720,85.5C780,108,840,139,900,136.2C960,133,1020,95,1080,72.8C1140,51,1200,44,1260,47.5C1320,51,1380,63,1440,72.8C1500,82,1560,89,1620,76C1680,63,1740,32,1800,22.2C1860,13,1920,25,1980,53.8C2040,82,2100,127,2160,136.2C2220,146,2280,120,2340,98.2C2400,76,2460,57,2520,50.7C2580,44,2640,51,2700,47.5C2760,44,2820,32,2880,31.7C2940,32,3000,44,3060,50.7C3120,57,3180,57,3240,66.5C3300,76,3360,95,3420,91.8C3480,89,3540,63,3600,50.7C3660,38,3720,38,3780,31.7C3840,25,3900,13,3960,34.8C4020,57,4080,114,4140,136.2C4200,158,4260,146,4290,139.3L4320,133L4320,190L4290,190C4260,190,4200,190,4140,190C4080,190,4020,190,3960,190C3900,190,3840,190,3780,190C3720,190,3660,190,3600,190C3540,190,3480,190,3420,190C3360,190,3300,190,3240,190C3180,190,3120,190,3060,190C3000,190,2940,190,2880,190C2820,190,2760,190,2700,190C2640,190,2580,190,2520,190C2460,190,2400,190,2340,190C2280,190,2220,190,2160,190C2100,190,2040,190,1980,190C1920,190,1860,190,1800,190C1740,190,1680,190,1620,190C1560,190,1500,190,1440,190C1380,190,1320,190,1260,190C1200,190,1140,190,1080,190C1020,190,960,190,900,190C840,190,780,190,720,190C660,190,600,190,540,190C480,190,420,190,360,190C300,190,240,190,180,190C120,190,60,190,30,190L0,190Z"></path></svg>
+    </header>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
-
+    <footer>
+        <svg id="wave" class="wave-footer" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 190" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(165, 90, 242, 1)" offset="0%"></stop><stop stop-color="rgba(165, 90, 242, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,57L30,47.5C60,38,120,19,180,28.5C240,38,300,76,360,82.3C420,89,480,63,540,57C600,51,660,63,720,85.5C780,108,840,139,900,136.2C960,133,1020,95,1080,72.8C1140,51,1200,44,1260,47.5C1320,51,1380,63,1440,72.8C1500,82,1560,89,1620,76C1680,63,1740,32,1800,22.2C1860,13,1920,25,1980,53.8C2040,82,2100,127,2160,136.2C2220,146,2280,120,2340,98.2C2400,76,2460,57,2520,50.7C2580,44,2640,51,2700,47.5C2760,44,2820,32,2880,31.7C2940,32,3000,44,3060,50.7C3120,57,3180,57,3240,66.5C3300,76,3360,95,3420,91.8C3480,89,3540,63,3600,50.7C3660,38,3720,38,3780,31.7C3840,25,3900,13,3960,34.8C4020,57,4080,114,4140,136.2C4200,158,4260,146,4290,139.3L4320,133L4320,190L4290,190C4260,190,4200,190,4140,190C4080,190,4020,190,3960,190C3900,190,3840,190,3780,190C3720,190,3660,190,3600,190C3540,190,3480,190,3420,190C3360,190,3300,190,3240,190C3180,190,3120,190,3060,190C3000,190,2940,190,2880,190C2820,190,2760,190,2700,190C2640,190,2580,190,2520,190C2460,190,2400,190,2340,190C2280,190,2220,190,2160,190C2100,190,2040,190,1980,190C1920,190,1860,190,1800,190C1740,190,1680,190,1620,190C1560,190,1500,190,1440,190C1380,190,1320,190,1260,190C1200,190,1140,190,1080,190C1020,190,960,190,900,190C840,190,780,190,720,190C660,190,600,190,540,190C480,190,420,190,360,190C300,190,240,190,180,190C120,190,60,190,30,190L0,190Z"></path></svg>
+        <p class="footer__info">
+            <span>
+                Creado por enzo vargas
+            </span>
+            <span>
+                <a>Términos</a>|<a>Privacidad</a>
+            </span>
+        </p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
