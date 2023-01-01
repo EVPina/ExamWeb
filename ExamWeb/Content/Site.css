@@ -1,8 +1,28 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #FC5DA2;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
 }
 
+a,
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    -webkit-box-shadow: inset 1px 1px 3px #353535;
+    box-shadow: inset 1px 1px 3px #353535;
+}
+
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -21,4 +41,37 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+header {
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer, header {
+    display: flex;
+    flex-direction: column;
+}
+
+header div, footer p {
+    margin: 0;
+    background: #A55AF2;
+}
+
+footer p {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+header,footer p, footer a{
+    color: #fff;
 }
