@@ -1,0 +1,10 @@
+﻿
+
+
+@mixin boton($pad,$fsize) {
+    background: $color_primario;
+    color: #fff;
+    border-radius: 20px;
+    padding: $pad;
+    font-size: $fsize;
+}

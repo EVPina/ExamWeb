@@ -1,11 +1,21 @@
-﻿@import "_Variables.scss";
+﻿@import "_Variables.scss","_Funciones.scss";
 
 h1 {
     color: #fff;
     font-size: 2rem;
 }
 
-button {
-    padding: 10px 49px;
-    font-size: 1.7rem;
+.enterbutton {
+    @include boton(10px 49px,1.7rem);
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    -webkit-box-shadow: inset 1px 1px 3px #353535;
+    box-shadow: inset 1px 1px 3px #353535;
 }

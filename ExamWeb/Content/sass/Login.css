@@ -1,0 +1,54 @@
+﻿.body-content {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+.body-content .container__bloque-titulo {
+  display: flex;
+  align-items: baseline;
+  position: relative;
+  justify-content: space-between;
+}
+.body-content .container__bloque input[type=text], .body-content .container__bloque input[type=password] {
+  width: 100%;
+  padding: 0.8rem;
+  background: #D3D3D3;
+  outline: none;
+  border: none;
+  color: #000;
+  max-width: none;
+}
+.body-content .boton {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.enterbutton,
+.enterbutton:hover {
+  text-decoration: none;
+}
+
+.enterbutton {
+  background: #A55AF2;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.5rem 4rem;
+  font-size: 2rem;
+}
+
+.enterbutton:hover {
+  -webkit-box-shadow: inset 1px 1px 3px #353535;
+  box-shadow: inset 1px 1px 3px #353535;
+  color: #fff;
+}
+
+@media (min-width: 500px) {
+  .body-content {
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+  }
+}

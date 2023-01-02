@@ -11,17 +11,8 @@ body {
     height: 100vh;
 }
 
-a,
-a:hover {
-    text-decoration: none;
-    color: #fff;
-}
-
-a:hover {
-    -webkit-box-shadow: inset 1px 1px 3px #353535;
-    box-shadow: inset 1px 1px 3px #353535;
-}
-
+a{
+    cursor:pointer;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {

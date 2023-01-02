@@ -5,9 +5,19 @@
 
 .enterbutton {
   background: #A55AF2;
-  border: navajowhite;
   color: #fff;
-  padding: 10px 49px;
   border-radius: 20px;
+  padding: 10px 49px;
   font-size: 1.7rem;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover {
+  -webkit-box-shadow: inset 1px 1px 3px #353535;
+  box-shadow: inset 1px 1px 3px #353535;
 }
