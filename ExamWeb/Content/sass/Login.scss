@@ -1,0 +1,57 @@
+﻿@import "_Variables.scss","_Funciones.scss";
+
+.body-content {
+    margin-right: 2rem;
+    margin-left: 2rem;
+
+    .container__bloque {
+        &-titulo {
+            display: flex;
+            align-items: baseline;
+            position: relative;
+            justify-content: space-between;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.8rem;
+            background: #D3D3D3;
+            outline: none;
+            border: none;
+            color: #000;
+            max-width: none;
+        }
+    }
+
+    .boton {
+        margin-top: 3rem;
+        text-align: center;
+    }
+}
+
+h2{
+    font-size: 2rem;
+}
+
+.enterbutton ,
+.enterbutton:hover {
+    text-decoration: none;
+}
+
+.enterbutton {
+    @include boton(0.5rem 4rem,2rem);
+}
+
+.enterbutton:hover {
+    -webkit-box-shadow: inset 1px 1px 3px #353535;
+    box-shadow: inset 1px 1px 3px #353535;
+    color:#fff;
+}
+
+@media (min-width: 500px) {
+    .body-content {
+        margin-right: auto;
+        margin-left: auto;
+        width: 500px;
+    }
+}
