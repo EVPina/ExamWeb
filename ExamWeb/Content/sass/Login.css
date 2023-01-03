@@ -2,13 +2,13 @@
   margin-right: 2rem;
   margin-left: 2rem;
 }
-body .body-content .container__bloque-titulo {
+body .body-content .container__form-bloque-titulo {
   display: flex;
   align-items: baseline;
   position: relative;
   justify-content: space-between;
 }
-body .body-content .container__bloque input[type=text], body .body-content .container__bloque input[type=password] {
+body .body-content .container__form-bloque input[type=text], body .body-content .container__form-bloque input[type=password] {
   width: 100%;
   padding: 0.8rem;
   background: #D3D3D3;

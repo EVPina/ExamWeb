@@ -4,17 +4,20 @@
 }
 
 <link href="~/Content/sass/Login.min.css" rel="stylesheet" />
-<div class="container__bloque">
-    <div class="container__bloque-titulo">
-        <h2>Usuario</h2>
-        @Html.ActionLink("Crear cuenta","Registrar","Account")
+
+<form action="/" method="post" class="container__form">
+    <div class="container__form-bloque">
+        <div class="container__form-bloque-titulo">
+            <h2>Usuario</h2>
+            @Html.ActionLink("Crear cuenta", "Registrar", "Account")
+        </div>
+        <input type="text" name="user" value="" />
     </div>
-    <input type="text" name="user" value="" />
-</div>
-<div class="container__bloque">
-    <h2>Contraseña</h2>
-    <input type="password" name="pass" value="" />
-</div>
-<div class="boton">
-    <a href="#" class="enterbutton">Ingresa</a>
-</div>
+    <div class="container__form-bloque">
+        <h2>Contraseña</h2>
+        <input type="password" name="pass" value="" />
+    </div>
+    <div class="boton">
+        <a href="#" class="enterbutton">Ingresa</a>
+    </div>
+</form>

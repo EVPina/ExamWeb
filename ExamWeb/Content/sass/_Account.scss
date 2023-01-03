@@ -6,23 +6,25 @@ body {
         margin-right: 2rem;
         margin-left: 2rem;
 
-        .container__bloque {
+        .container__form {
 
-            &-titulo {
-                display: flex;
-                align-items: baseline;
-                position: relative;
-                justify-content: space-between;
-            }
+            &-bloque{
+                &-titulo {
+                    display: flex;
+                    align-items: baseline;
+                    position: relative;
+                    justify-content: space-between;
+                }
 
-            input[type="text"], input[type="password"] {
-                width: 100%;
-                padding: 0.8rem;
-                background: #D3D3D3;
-                outline: none;
-                border: none;
-                color: #000;
-                max-width: none;
+                input[type="text"], input[type="password"] {
+                    width: 100%;
+                    padding: 0.8rem;
+                    background: #D3D3D3;
+                    outline: none;
+                    border: none;
+                    color: #000;
+                    max-width: none;
+                }
             }
         }
 
