@@ -196,6 +196,12 @@
     <Content Include="Content\sass\Login.min.css">
       <DependentUpon>Login.css</DependentUpon>
     </Content>
+    <Content Include="Content\sass\Registrar.css">
+      <DependentUpon>Registrar.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\sass\Registrar.min.css">
+      <DependentUpon>Registrar.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -227,6 +233,8 @@
     </None>
     <Content Include="Content\sass\_Funciones.scss" />
     <Content Include="Content\sass\Login.scss" />
+    <Content Include="Content\sass\Registrar.scss" />
+    <Content Include="Content\sass\_Account.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -255,10 +263,13 @@
     <Content Include="Views\User\Cuenta.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Registrar.cshtml" />
+    <Content Include="Views\Account\_UserData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Registrar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
