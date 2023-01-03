@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Registrar";
+}
+<link href="~/Content/sass/Registrar.min.css" rel="stylesheet" />
+
+<div class="container__bloque">
+    @Html.Partial("_UserData")
+    <div class="container__bloque">
+        <h2>Contraseña</h2>
+        <input type="password" name="ConfirmContraseña" value="" />
+    </div>
+    <div class="boton">
+        <a href="#" class="enterbutton">Registrar</a>
+    </div>
+</div>
