@@ -1,10 +1,20 @@
-﻿[
+[
   {
     "outputFile": "Content/sass/Login.css",
-    "inputFile": "Content/sass/Login.scss"
+    "inputFile": "Content/sass/Login.scss",
+    "sourceMap": false,
+    "useNodeSass": false
   },
   {
     "outputFile": "Content/sass/Home.css",
-    "inputFile": "Content/sass/Home.scss"
+    "inputFile": "Content/sass/Home.scss",
+    "sourceMap": false,
+    "useNodeSass": false
+  },
+  {
+    "outputFile": "Content/sass/Registrar.css",
+    "inputFile": "Content/sass/Registrar.scss",
+    "sourceMap": false,
+    "useNodeSass": false
   }
 ]
